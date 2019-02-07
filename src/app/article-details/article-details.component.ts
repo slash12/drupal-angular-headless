@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Title }  from '@angular/platform-browser';
 
 import { ArticleService } from '../article.service';
 import { Article } from '../article';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'X-CSRF-Token': 'xcOkg2WAcA7yOZ71F9hMGe-4s8sKcygnZVKZ-wynAtc'
-  })
-};
 
 @Component({
   selector: 'app-article-details',
@@ -20,9 +14,8 @@ const httpOptions = {
 export class ArticleDetailsComponent implements OnInit {
 
   article: Article;
-  private drupalprivate = 'http://drupal.local/example-node-rest/';
 
-  constructor(private titleService: Title, private http: HttpClient, private articleService: ArticleService, private activeRoute: ActivatedRoute, private route: Router){ }
+  constructor(private titleService: Title, private articleService: ArticleService, private activeRoute: ActivatedRoute, private route: Router){ }
   id = this.activeRoute.snapshot.paramMap.get("id");
 
   ngOnInit() 
@@ -58,6 +51,6 @@ export class ArticleDetailsComponent implements OnInit {
 
   deleteArticle(id) 
   {
-    return this.http.delete(this.drupalprivate + id, httpOptions).subscribe((data) => this.goArticle());
+    return this.articleService.deleteArticle(id).subscribe(data => this.goArticle());
   }
 }

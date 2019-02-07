@@ -40,7 +40,14 @@
   </div>
 
 <div *ngIf="articles">
-  <ul class="list-group" *ngFor="let article of articles">
-      <li class="list-group-item"> {{article['title']}} - {{article['body']}} - <a class="btn btn-secondary" (click)="selectArticle(article.id)">Read more</a></li>
-  </ul>
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <div *ngFor="let article of articles">
+      <ngb-panel title="{{article.title}}">
+        <ng-template ngbPanelContent>
+          {{article.body}}
+          <a class="btn btn-secondary" (click)="selectArticle(article.id)">Read more</a>
+        </ng-template>
+      </ngb-panel>
+    </div>
+  </ngb-accordion>
 </div>

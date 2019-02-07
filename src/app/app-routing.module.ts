@@ -6,6 +6,7 @@ import { ArticleDetailsComponent } from './article-details/article-details.compo
 import { ArticleUpdateComponent } from './article-update/article-update.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/articles', pathMatch: 'full' },
   {path: 'articles', component: ArticleComponent},
   {path: 'article/details/:id', component: ArticleDetailsComponent},
   {path: 'article/update/:id', component: ArticleUpdateComponent},
