@@ -1,0 +1,18 @@
+<div *ngIf="article">
+  <form #updateArticleForm="ngForm" (ngSubmit) = "onSub(updateArticleForm.value)">
+    <input type="hidden" name="hfarticleid" [(ngModel)]="article.id">
+    <div class="form-group row">
+      <div class="col-4">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control" [(ngModel)] = "article.title">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-6">
+        <label for="body">Body</label>
+        <input type="text" name="body" class="form-control" [(ngModel)]="article.body">  
+      </div>      
+    </div>
+    <button type="submit" class="btn btn-primary">Update Article</button>
+  </form>
+</div>
